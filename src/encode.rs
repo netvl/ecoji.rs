@@ -94,6 +94,13 @@ pub fn encode<R: Read + ?Sized, W: Write + ?Sized>(source: &mut R, destination: 
     Ok(bytes_written)
 }
 
+pub fn encode_to_string<R: Read + ?Sized>(source: &mut R) -> io::Result<String> {
+    let mut output = Vec::new();
+    encode(source, &mut output)?;
+    // encoding output is guaranteed to be valid UTF-8
+    Ok(unsafe { String::from_utf8_unchecked(output) })
+}
+
 #[cfg(test)]
 mod tests {
     use super::encode;

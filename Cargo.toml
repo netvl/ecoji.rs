@@ -1,6 +1,17 @@
 [package]
+authors = ["Vladimir Matveev <vladimir.matweev@gmail.com>"]
 name = "ecoji"
 version = "0.1.0"
-authors = ["Vladimir Matveev <vladimir.matweev@gmail.com>"]
+
+[features]
+build-binary = ["clap"]
 
 [dependencies]
+clap = { version = "2.31.1", optional = true }
+
+[lib]
+name = "ecoji"
+
+[[bin]]
+name = "ecoji"
+required-features = ["build-binary"]
