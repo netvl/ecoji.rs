@@ -1,3 +1,5 @@
+extern crate phf;
+
 mod emojis;
 mod encode;
 

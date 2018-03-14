@@ -7,7 +7,11 @@ version = "0.1.0"
 build-binary = ["clap"]
 
 [dependencies]
+phf = "0.7.21"
 clap = { version = "2.31.1", optional = true }
+
+[build-dependencies]
+phf_codegen = "0.7.21"
 
 [lib]
 name = "ecoji"
