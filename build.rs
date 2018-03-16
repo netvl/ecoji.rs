@@ -34,7 +34,7 @@ fn run() -> Result<(), Box<Error>> {
     }
     writeln!(&mut output, "];")?;
 
-    write!(&mut output, "static EMOJIS_REV: ::phf::Map<char, usize> = ")?;
+    write!(&mut output, "pub static EMOJIS_REV: ::phf::Map<char, usize> = ")?;
     rev_map.build(&mut output)?;
     writeln!(&mut output, ";")?;
 

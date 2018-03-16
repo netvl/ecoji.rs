@@ -13,15 +13,15 @@ fn main() {
         .about("Ecoji encode/decode data and print to standard output")
         .setting(AppSettings::ColoredHelp)
         .args_from_usage(
-            "-d --decode 'Decode data'"
+            "-d, --decode 'Decode data'"
         )
         .get_matches();
 
+    let (stdin, stdout) = (io::stdin(), io::stdout());
+    let (mut stdin, mut stdout) = (stdin.lock(), stdout.lock());
     if matches.value_of("d").is_some() {
-        unimplemented!();
+        ecoji::decode(&mut stdin, &mut stdout).expect("Failed to decode data");
     } else {
-        let (stdin, stdout) = (io::stdin(), io::stdout());
-        let (mut stdin, mut stdout) = (stdin.lock(), stdout.lock());
         ecoji::encode(&mut stdin, &mut stdout).expect("Failed to encode data");
     }
 }
