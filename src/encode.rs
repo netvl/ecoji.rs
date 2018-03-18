@@ -97,25 +97,22 @@ pub fn encode<R: Read + ?Sized, W: Write + ?Sized>(source: &mut R, destination: 
 pub fn encode_to_string<R: Read + ?Sized>(source: &mut R) -> io::Result<String> {
     let mut output = Vec::new();
     encode(source, &mut output)?;
-    // encoding output is guaranteed to be valid UTF-8
+    // encoded output is guaranteed to be valid UTF-8
     Ok(unsafe { String::from_utf8_unchecked(output) })
 }
 
 #[cfg(test)]
 mod tests {
-    use super::encode;
-    use emojis::*;
+    use super::*;
 
     fn check(input: &[u8], output: &[u8]) {
-        let mut buf = Vec::new();
-        encode(&mut input.clone(), &mut buf).unwrap();
-        assert_eq!(output, buf.as_slice());
+        let buf = encode_to_string(&mut input.clone()).unwrap();
+        assert_eq!(output, buf.as_bytes());
     }
 
     fn check_chars(input: &[u8], output: &[char]) {
-        let mut buf = Vec::new();
-        encode(&mut input.clone(), &mut buf).unwrap();
-        let chars: Vec<_> = String::from_utf8(buf).unwrap().chars().collect();
+        let buf = encode_to_string(&mut input.clone()).unwrap();
+        let chars: Vec<_> = buf.chars().collect();
         assert_eq!(output, chars.as_slice());
     }
 

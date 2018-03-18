@@ -63,3 +63,63 @@ pub fn decode<R: Read + ?Sized, W: Write + ?Sized>(source: &mut R, destination: 
 
     Ok(bytes_written)
 }
+
+pub fn decode_to_vec<R: Read + ?Sized>(source: &mut R) -> io::Result<Vec<u8>> {
+    let mut output = Vec::new();
+    decode(source, &mut output)?;
+    Ok(output)
+}
+
+pub fn decode_to_string<R: Read + ?Sized>(source: &mut R) -> io::Result<String> {
+    let output = decode_to_vec(source)?;
+    String::from_utf8(output).map_err(|e| io::Error::new(io::ErrorKind::InvalidData, e))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn check(input: &[u8], output: &[u8]) {
+        let buf = decode_to_vec(&mut input.clone()).unwrap();
+        assert_eq!(output, buf.as_slice());
+    }
+
+    fn check_chars(input: &[char], output: &[u8]) {
+        let input: String = input.iter().cloned().collect();
+        let buf = decode_to_vec(&mut input.as_bytes()).unwrap();
+        assert_eq!(output, buf.as_slice());
+    }
+
+    #[test]
+    fn test_random() {
+        check("👖📸🎈☕".as_bytes(), b"abc");
+    }
+
+    #[test]
+    fn test_one_byte() {
+        check_chars(&[EMOJIS[('k' as usize) << 2], PADDING, PADDING, PADDING], b"k");
+    }
+
+    #[test]
+    fn test_two_bytes() {
+        check_chars(&[EMOJIS[0], EMOJIS[16], PADDING, PADDING], &[0, 1]);
+    }
+
+    #[test]
+    fn test_three_bytes() {
+        check_chars(&[EMOJIS[0], EMOJIS[16], EMOJIS[128], PADDING], &[0, 1, 2]);
+    }
+
+    #[test]
+    fn test_four_bytes() {
+        check_chars(&[EMOJIS[0], EMOJIS[16], EMOJIS[128], PADDING_40], &[0, 1, 2, 0]);
+        check_chars(&[EMOJIS[0], EMOJIS[16], EMOJIS[128], PADDING_41], &[0, 1, 2, 1]);
+        check_chars(&[EMOJIS[0], EMOJIS[16], EMOJIS[128], PADDING_42], &[0, 1, 2, 2]);
+        check_chars(&[EMOJIS[0], EMOJIS[16], EMOJIS[128], PADDING_43], &[0, 1, 2, 3]);
+    }
+
+    #[test]
+    fn test_five_bytes() {
+        check_chars(&[EMOJIS[687], EMOJIS[222], EMOJIS[960], EMOJIS[291]], &[0xAB, 0xCD, 0xEF, 0x01, 0x23]);
+    }
+}

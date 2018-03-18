@@ -10,11 +10,9 @@ fn main() {
     let matches = App::new("ecoji")
         .version(crate_version!())
         .author("Vladimir Matveev <vladimir.matweev@gmail.com>")
-        .about("Ecoji encode/decode data and print to standard output")
+        .about("Ecoji encode/decode data in standard input and print results to standard output")
         .setting(AppSettings::ColoredHelp)
-        .args_from_usage(
-            "-d, --decode 'Decode data'"
-        )
+        .args_from_usage("-d, --decode 'Decode data'")
         .get_matches();
 
     let (stdin, stdout) = (io::stdin(), io::stdout());

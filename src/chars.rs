@@ -25,7 +25,7 @@ pub enum CharsError {
 
 impl CharsError {
     pub fn into_io(self) -> Error {
-        Error::new(ErrorKind::InvalidInput, self)
+        Error::new(ErrorKind::InvalidData, self)
     }
 }
 
