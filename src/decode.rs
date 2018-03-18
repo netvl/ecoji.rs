@@ -25,23 +25,23 @@ pub fn decode<R: Read + ?Sized, W: Write + ?Sized>(source: &mut R, destination: 
         }
 
         let (bits1, bits2, bits3) = (
-            EMOJIS_REV[&chars[0]],
-            EMOJIS_REV[&chars[1]],
-            EMOJIS_REV[&chars[2]]
+            EMOJIS_REV.get(&chars[0]).cloned().unwrap_or(0),
+            EMOJIS_REV.get(&chars[1]).cloned().unwrap_or(0),
+            EMOJIS_REV.get(&chars[2]).cloned().unwrap_or(0)
         );
         let bits4 = match chars[3] {
             PADDING_40 => 0,
             PADDING_41 => 1 << 8,
             PADDING_42 => 2 << 8,
             PADDING_43 => 3 << 8,
-            other => EMOJIS_REV[&other],
+            other => EMOJIS_REV.get(&other).cloned().unwrap_or(0),
         };
 
         let out = [
             (bits1 >> 2) as u8,
-            ((bits1 & 0x3 << 6) | (bits2 >> 4)) as u8,
-            ((bits2 & 0xf << 4) | (bits3 >> 6)) as u8,
-            ((bits3 & 0x3f << 2) | (bits4 >> 8)) as u8,
+            (((bits1 & 0x3) << 6) | (bits2 >> 4)) as u8,
+            (((bits2 & 0xf) << 4) | (bits3 >> 6)) as u8,
+            (((bits3 & 0x3f) << 2) | (bits4 >> 8)) as u8,
             (bits4 & 0xff) as u8
         ];
 

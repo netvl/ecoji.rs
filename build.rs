@@ -29,7 +29,7 @@ fn run() -> Result<(), Box<Error>> {
 
     writeln!(&mut output, "pub const EMOJIS: [char; 1024] = [")?;
     for (i, line) in lines.into_iter().take(1024).enumerate() {
-        writeln!(&mut output, r"    '\u{{{}}}',", line)?;
+        writeln!(&mut output, r"    '\u{{{}}}',  // {}", line, i)?;
         rev_map.entry(char::from_u32(u32::from_str_radix(&line, 16).unwrap()).unwrap(), &i.to_string());
     }
     writeln!(&mut output, "];")?;

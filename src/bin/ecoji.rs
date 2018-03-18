@@ -19,7 +19,7 @@ fn main() {
 
     let (stdin, stdout) = (io::stdin(), io::stdout());
     let (mut stdin, mut stdout) = (stdin.lock(), stdout.lock());
-    if matches.value_of("d").is_some() {
+    if matches.is_present("decode") {
         ecoji::decode(&mut stdin, &mut stdout).expect("Failed to decode data");
     } else {
         ecoji::encode(&mut stdin, &mut stdout).expect("Failed to encode data");
