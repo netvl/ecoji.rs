@@ -2,7 +2,7 @@
 
 A Rust implementation of the [Ecoji](https://github.com/keith-turner/ecoji) encoding standard.
 
-Provides a library for encoding and decoding data as a base-1024 sequence of emojis, as well as `base64`-like command
+Provides a library for encoding and decoding data as a base-1024 sequence of emojis, as well as a `base64`-like command
 line tool to perform these transformations in your shell.
 
 ## Usage
