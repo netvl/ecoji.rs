@@ -1,4 +1,4 @@
-# Ecoji [![Crates](https://img.shields.io/crates/v/ecoji.svg?style=flat-square)](https://crates.io/crates/ecoji)[![Travis](https://img.shields.io/travis/netvl/ecoji.rs.svg?style=flat-square)](https://travis-ci.org/netvl/ecoji.rs)[![docs.rs](https://img.shields.io/badge/documentation-docs.rs-green.svg?style=flat-square)](https://docs.rs/ecoji)
+# Ecoji [![Crates](https://img.shields.io/crates/v/ecoji.svg?style=flat-square)](https://crates.io/crates/ecoji) [![Travis](https://img.shields.io/travis/netvl/ecoji.rs.svg?style=flat-square)](https://travis-ci.org/netvl/ecoji.rs) [![docs.rs](https://img.shields.io/badge/documentation-docs.rs-green.svg?style=flat-square)](https://docs.rs/ecoji)
 
 A Rust implementation of the [Ecoji](https://github.com/keith-turner/ecoji) encoding standard.
 
