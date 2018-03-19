@@ -10,7 +10,10 @@ fn main() {
     let matches = App::new("ecoji")
         .version(crate_version!())
         .author("Vladimir Matveev <vladimir.matweev@gmail.com>")
-        .about("Ecoji encode/decode data in standard input and print results to standard output")
+        .about(
+            "Encode or decode data in standard input as emojis and print results to standard output.\n\
+             A Rust reimplementation of the original Ecoji library and tool (https://github.com/keith-turner/ecoji)."
+        )
         .setting(AppSettings::ColoredHelp)
         .args_from_usage("-d, --decode 'Decode data'")
         .get_matches();

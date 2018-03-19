@@ -11,6 +11,13 @@ fn main() {
     run().expect("Failed to generate 'emojis.rs'");
 }
 
+/// Given an input file containing base-16 representations of emoji code points, generates
+/// an array of length 1024 of these emojis to serve as an alphabet for the ecoji encoding.
+///
+/// Padding characters are generated here as well.
+///
+/// Also generates a reverse mapping from code points to the indices of the respective code points
+/// in the alphabet array using the phf crate.
 fn run() -> Result<(), Box<Error>> {
     let input = BufReader::new(File::open("emojis.txt")?);
     let mut lines: Vec<_> = input.lines().collect::<Result<_, _>>()?;

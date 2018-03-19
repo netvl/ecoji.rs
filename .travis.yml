@@ -1,0 +1,21 @@
+notifications:
+  email:
+    recipients:
+      - dpx.infinity@gmail.com
+
+language: rust
+rust:
+  - stable
+  - beta
+  - nightly
+
+script:
+  - cargo build --verbose
+  - cargo test --verbose
+  - cargo build --verbose --bin ecoji --features build-binary
+  - cargo test --verbose --bin ecoji --features build-binary
+
+matrix:
+  allow_failures:
+    - rust: nightly
+  fast_finish: true

@@ -1,20 +1,19 @@
 [package]
 authors = ["Vladimir Matveev <vladimir.matweev@gmail.com>"]
 name = "ecoji"
-version = "0.1.0"
+version = "1.0.0"
+description = "Provides base-1024 encoding and decoding using an alphabet of emojis."
+documentation = "https://docs.rs/ecoji"
+homepage = "https://github.com/netvl/ecoji.rs"
+repository = "https://github.com/netvl/ecoji.rs"
+readme = "README.md"
+keywords = ["encode", "decode", "base1024", "emoji", "unicode"]
+categories = ["encoding", "command-line-utilities"]
+license = "MIT/Apache-2.0"
 
-[features]
-build-binary = ["clap"]
-
-[dependencies]
-phf = "0.7.21"
-clap = { version = "2.31.1", optional = true }
-
-[dev-dependencies]
-quickcheck = "0.6"
-
-[build-dependencies]
-phf_codegen = "0.7.21"
+[badges]
+travis-ci = { repository = "netvl/ecoji.rs", branch = "master" }
+maintenance = { status = "passively-maintained" }
 
 [lib]
 name = "ecoji"
@@ -22,3 +21,16 @@ name = "ecoji"
 [[bin]]
 name = "ecoji"
 required-features = ["build-binary"]
+
+[features]
+build-binary = ["clap"]
+
+[build-dependencies]
+phf_codegen = "0.7.21"
+
+[dev-dependencies]
+quickcheck = "0.6"
+
+[dependencies]
+phf = "0.7.21"
+clap = { version = "2.31.1", optional = true }
