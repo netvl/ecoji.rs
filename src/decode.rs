@@ -17,6 +17,7 @@ use emojis::*;
 /// # Examples
 ///
 /// Successful decoding:
+///
 /// ```
 /// # fn test() -> ::std::io::Result<()> {
 /// let input = "👶😲🇲👅🍉🔙🌥🌩";
@@ -31,6 +32,7 @@ use emojis::*;
 /// ```
 ///
 /// Invalid input data, not enough code points:
+///
 /// ```
 /// use std::io;
 ///
@@ -44,6 +46,7 @@ use emojis::*;
 /// ```
 ///
 /// Invalid input data, not a correct UTF-8 stream:
+///
 /// ```
 /// use std::io;
 ///
@@ -57,6 +60,7 @@ use emojis::*;
 /// ```
 ///
 /// Invalid input data, input code point is not a part of the Ecoji alphabet:
+///
 /// ```
 /// use std::io;
 ///
@@ -140,6 +144,7 @@ pub fn decode<R: Read + ?Sized, W: Write + ?Sized>(source: &mut R, destination: 
 /// # Examples
 ///
 /// Successful decoding:
+///
 /// ```
 /// # fn test() -> ::std::io::Result<()> {
 /// let input = "👶😲🇲👅🍉🔙🌥🌩";
@@ -169,6 +174,7 @@ pub fn decode_to_vec<R: Read + ?Sized>(source: &mut R) -> io::Result<Vec<u8>> {
 /// # Examples
 ///
 /// Successful decoding:
+///
 /// ```
 /// # fn test() -> ::std::io::Result<()> {
 /// let input = "👶😲🇲👅🍉🔙🌥🌩";
@@ -181,6 +187,7 @@ pub fn decode_to_vec<R: Read + ?Sized>(source: &mut R) -> io::Result<Vec<u8>> {
 /// ```
 ///
 /// Invalid input data, decoded string is not a valid UTF-8 string:
+///
 /// ```
 /// use std::io;
 ///

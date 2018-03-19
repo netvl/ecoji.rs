@@ -17,6 +17,7 @@
 //!   6 bits of data.
 //! * Ecoji-encoded strings can be concatenated and then decoded, giving the concatenation of the
 //!   original strings:
+//!
 //!   ```
 //!   use ecoji::{encode_to_string, decode_to_string};
 //!
@@ -38,6 +39,7 @@
 //!   # test().unwrap();
 //!   ```
 //! * Data encoded with Ecoji has the same sorting order as the input data:
+//!
 //!   ```
 //!   use ecoji::{encode_to_string, decode_to_string};
 //!

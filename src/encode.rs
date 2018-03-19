@@ -88,6 +88,7 @@ fn read_exact<R: Read + ?Sized>(source: &mut R, mut buf: &mut [u8]) -> io::Resul
 /// # Examples
 ///
 /// Successful encoding:
+///
 /// ```
 /// # fn test() -> ::std::io::Result<()> {
 /// let input = "input data";
@@ -130,6 +131,7 @@ pub fn encode<R: Read + ?Sized, W: Write + ?Sized>(source: &mut R, destination: 
 /// # Examples
 ///
 /// Successful encoding:
+///
 /// ```
 /// # fn test() -> ::std::io::Result<()> {
 /// let input = "input data";
