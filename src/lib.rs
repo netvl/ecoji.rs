@@ -111,6 +111,10 @@
 //! $ cargo install --bin ecoji --features build-binary ecoji
 //! ```
 //!
+//! It will be installed in your default Cargo binaries directory (usually `~/.cargo/bin` on Unix
+//! systems). Run `ecoji --help` (assuming the aforementioned directory is in your `PATH`) to
+//! see documentation on how to invoke itl.
+//!
 //! ## Issues and limitations
 //!
 //! Currently this crate does not provide an ability to do wrapping of the encoded text, like

@@ -16,7 +16,7 @@ use emojis::*;
 ///
 /// # Examples
 ///
-/// Successful read:
+/// Successful decoding:
 /// ```
 /// # fn test() -> ::std::io::Result<()> {
 /// let input = "👶😲🇲👅🍉🔙🌥🌩";
@@ -38,8 +38,8 @@ use emojis::*;
 ///
 /// let mut output: Vec<u8> = Vec::new();
 /// match ecoji::decode(&mut input.as_bytes(), &mut output) {
-///   Ok(_) => panic!("Unexpected success"),
-///   Err(e) => assert_eq!(e.kind(), io::ErrorKind::UnexpectedEof),
+///     Ok(_) => panic!("Unexpected success"),
+///     Err(e) => assert_eq!(e.kind(), io::ErrorKind::UnexpectedEof),
 /// }
 /// ```
 ///
@@ -51,8 +51,8 @@ use emojis::*;
 ///
 /// let mut output: Vec<u8> = Vec::new();
 /// match ecoji::decode(&mut input.clone(), &mut output) {
-///   Ok(_) => panic!("Unexpected success"),
-///   Err(e) => assert_eq!(e.kind(), io::ErrorKind::InvalidData),
+///     Ok(_) => panic!("Unexpected success"),
+///     Err(e) => assert_eq!(e.kind(), io::ErrorKind::InvalidData),
 /// }
 /// ```
 ///
@@ -65,8 +65,8 @@ use emojis::*;
 ///
 /// let mut output: Vec<u8> = Vec::new();
 /// match ecoji::decode(&mut input.as_bytes(), &mut output) {
-///   Ok(_) => panic!("Unexpected success"),
-///   Err(e) => assert_eq!(e.kind(), io::ErrorKind::InvalidData),
+///     Ok(_) => panic!("Unexpected success"),
+///     Err(e) => assert_eq!(e.kind(), io::ErrorKind::InvalidData),
 /// }
 /// ```
 pub fn decode<R: Read + ?Sized, W: Write + ?Sized>(source: &mut R, destination: &mut W) -> io::Result<usize> {
@@ -139,7 +139,7 @@ pub fn decode<R: Read + ?Sized, W: Write + ?Sized>(source: &mut R, destination: 
 ///
 /// # Examples
 ///
-/// Successful read:
+/// Successful decoding:
 /// ```
 /// # fn test() -> ::std::io::Result<()> {
 /// let input = "👶😲🇲👅🍉🔙🌥🌩";
@@ -168,7 +168,7 @@ pub fn decode_to_vec<R: Read + ?Sized>(source: &mut R) -> io::Result<Vec<u8>> {
 ///
 /// # Examples
 ///
-/// Successful read:
+/// Successful decoding:
 /// ```
 /// # fn test() -> ::std::io::Result<()> {
 /// let input = "👶😲🇲👅🍉🔙🌥🌩";
@@ -187,8 +187,8 @@ pub fn decode_to_vec<R: Read + ?Sized>(source: &mut R) -> io::Result<Vec<u8>> {
 /// let input = "🧑🦲🧕🙋";  // Encoded data: [0xfe, 0xfe, 0xff, 0xff]
 ///
 /// match ecoji::decode_to_string(&mut input.as_bytes()) {
-///   Ok(_) => panic!("Unexpected success"),
-///   Err(e) => assert_eq!(e.kind(), io::ErrorKind::InvalidData),
+///     Ok(_) => panic!("Unexpected success"),
+///     Err(e) => assert_eq!(e.kind(), io::ErrorKind::InvalidData),
 /// }
 /// ```
 pub fn decode_to_string<R: Read + ?Sized>(source: &mut R) -> io::Result<String> {

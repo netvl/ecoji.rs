@@ -76,6 +76,30 @@ fn read_exact<R: Read + ?Sized>(source: &mut R, mut buf: &mut [u8]) -> io::Resul
     Ok(bytes_read)
 }
 
+/// Encodes the entire source into the Ecoji format and writes a UTF-8 representation of
+/// the encoded data to the provided destination.
+///
+/// If successful, returns the number of bytes which were written to the destination writer.
+///
+/// Returns an error when either source or destination operation has failed. No guarantees are
+/// made about the state of the destination if an error occurs, so it is possible for the
+/// destination to contain only a part of the encoded data.
+///
+/// # Examples
+///
+/// Successful encoding:
+/// ```
+/// # fn test() -> ::std::io::Result<()> {
+/// let input = "input data";
+///
+/// let mut output: Vec<u8> = Vec::new();
+/// ecoji::encode(&mut input.as_bytes(), &mut output)?;
+///
+/// assert_eq!(output, "👶😲🇲👅🍉🔙🌥🌩".as_bytes());
+/// #  Ok(())
+/// # }
+/// # test().unwrap();
+/// ```
 pub fn encode<R: Read + ?Sized, W: Write + ?Sized>(source: &mut R, destination: &mut W) -> io::Result<usize> {
     let mut buf = [0; 5];
     let mut bytes_written = 0;
@@ -94,6 +118,28 @@ pub fn encode<R: Read + ?Sized, W: Write + ?Sized>(source: &mut R, destination: 
     Ok(bytes_written)
 }
 
+/// Encodes the entire source into the Ecoji format, storing the result of the encoding to a
+/// new owned string.
+///
+/// Returns a string with the encoded data if successful.
+///
+/// Failure conditions are exactly the same as those of the [`encode`](fn.encode.html) function;
+/// because the encoding output is always a valid sequence of emoji code points, it is guaranteed
+/// to be representable as a valid UTF-8 sequence.
+///
+/// # Examples
+///
+/// Successful encoding:
+/// ```
+/// # fn test() -> ::std::io::Result<()> {
+/// let input = "input data";
+/// let output: String = ecoji::encode_to_string(&mut input.as_bytes())?;
+///
+/// assert_eq!(output, "👶😲🇲👅🍉🔙🌥🌩");
+/// #  Ok(())
+/// # }
+/// # test().unwrap();
+/// ```
 pub fn encode_to_string<R: Read + ?Sized>(source: &mut R) -> io::Result<String> {
     let mut output = Vec::new();
     encode(source, &mut output)?;
