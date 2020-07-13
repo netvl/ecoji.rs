@@ -5,6 +5,8 @@ A Rust implementation of the [Ecoji](https://github.com/keith-turner/ecoji) enco
 Provides a library for encoding and decoding data as a base-1024 sequence of emojis, as well as a `base64`-like command
 line tool to perform these transformations in your shell.
 
+Visit [ecoji.io](https://ecoji.io) to try Ecoji in your browser.
+
 ## Usage
 
 To use the library, add a dependency to your `Cargo.toml`:
