@@ -1,4 +1,8 @@
-# Ecoji [![Crates](https://img.shields.io/crates/v/ecoji.svg?style=flat-square)](https://crates.io/crates/ecoji) [![Travis](https://img.shields.io/travis/netvl/ecoji.rs.svg?style=flat-square)](https://travis-ci.org/netvl/ecoji.rs) [![docs.rs](https://img.shields.io/badge/documentation-docs.rs-green.svg?style=flat-square)](https://docs.rs/ecoji)
+# Ecoji [![Build][actions]](https://github.com/netvl/ecoji.rs/actions/?query=workflow%3ACI) [![Crates][crates]](https://crates.io/crates/ecoji) [![docs.rs][docs]](https://docs.rs/ecoji)
+
+  [actions]: https://img.shields.io/github/workflow/status/netvl/ecoji.rs/CI/master?style=flat-square
+  [crates]: https://img.shields.io/crates/v/ecoji.svg?style=flat-square
+  [docs]: https://img.shields.io/badge/documentation-docs.rs-green.svg?style=flat-square
 
 A Rust implementation of the [Ecoji](https://github.com/keith-turner/ecoji) encoding standard.
 
@@ -6,6 +10,13 @@ Provides a library for encoding and decoding data as a base-1024 sequence of emo
 line tool to perform these transformations in your shell.
 
 Visit [ecoji.io](https://ecoji.io) to try Ecoji in your browser.
+
+---
+
+**Note: because I no longer have capacity to support it, I'm now looking for a new maintainer for this library.
+Until I'm able to find one, it is unlikely to receive new updates in any reasonably timely manner.**
+
+---
 
 ## Usage
 
